@@ -1,0 +1,4 @@
+rootProject.name = 'PathfinderEngine'
+
+
+enableFeaturePreview('GRADLE_METADATA')
