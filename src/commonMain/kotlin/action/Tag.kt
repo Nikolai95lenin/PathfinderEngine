@@ -3,7 +3,7 @@ package action
 enum class Tag {
     ATTACK,
     AUDITORY,
-    CONCENTRATION,
+    CONCENTRATE,
     DOWNTIME,
     EMOTION,
     EXPLORATION,
