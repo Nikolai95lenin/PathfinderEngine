@@ -1,6 +1,6 @@
 package language
 
-enum class LanguageType {
+enum class Type {
     COMMON,
     UNCOMMON,
     SECRET
