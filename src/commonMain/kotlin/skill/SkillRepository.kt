@@ -32,7 +32,8 @@ object SkillRepository {
         trainedActions = listOf(
             ActionRepository.getAction("Decipher Writing")!!,
             ActionRepository.getAction("Identify Magic")!!,
-            ActionRepository.getAction("Learn a Spell")!!
+            ActionRepository.getAction("Learn a Spell")!!,
+            ActionRepository.getAction("Borrow an Arcane Spell")!!
         )
     )
 
@@ -42,8 +43,19 @@ object SkillRepository {
                 "the Escape basic action (page 470), you can use your Athletics modifier instead of " +
                 "your unarmed attack modifier.",
         AbilityRepository.getAbility("Strength")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Climb")!!,
+            ActionRepository.getAction("Force Open")!!,
+            ActionRepository.getAction("Grapple")!!,
+            ActionRepository.getAction("High Jump")!!,
+            ActionRepository.getAction("Long Jump")!!,
+            ActionRepository.getAction("Shove")!!,
+            ActionRepository.getAction("Swim")!!,
+            ActionRepository.getAction("Trip")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Disarm")!!
+        )
     )
 
     private val crafting = Skill(
@@ -51,8 +63,15 @@ object SkillRepository {
         "You can use this skill to create, understand, and repair items. " +
                 "Even if you’re untrained, you can Recall Knowledge (page 238).",
         AbilityRepository.getAbility("Intelligence")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Recall Knowledge")!!,
+            ActionRepository.getAction("Repair")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Earn Income")!!,
+            ActionRepository.getAction("Craft")!!,
+            ActionRepository.getAction("Identify Alchemy")!!
+        )
     )
 
     private val deception = Skill(
@@ -60,15 +79,25 @@ object SkillRepository {
         "You can trick and mislead others using disguises, lies, and other forms " +
                 "of subterfuge.",
         AbilityRepository.getAbility("Charisma")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Create a Diversion")!!,
+            ActionRepository.getAction("Impersonate")!!,
+            ActionRepository.getAction("Lie")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Feint")!!
+        )
     )
 
     private val diplomacy = Skill(
         "Diplomacy",
         "You influence others through negotiation and flattery.",
         AbilityRepository.getAbility("Charisma")!!,
-        emptyList(),
+        listOf(
+            ActionRepository.getAction("Gather Information")!!,
+            ActionRepository.getAction("Make an Impression")!!,
+            ActionRepository.getAction("Request")!!
+        ),
         emptyList()
     )
 
@@ -76,7 +105,10 @@ object SkillRepository {
         "Intimidation",
         "You bend others to your will using threats.",
         AbilityRepository.getAbility("Charisma")!!,
-        emptyList(),
+        listOf(
+            ActionRepository.getAction("Coerce")!!,
+            ActionRepository.getAction("Demoralize")!!
+        ),
         emptyList()
     )
 
@@ -105,8 +137,12 @@ object SkillRepository {
                 "whether it can be used or not. Even if you’re untrained in Lore, you can use " +
                 "it to Recall Knowledge (page 238).",
         AbilityRepository.getAbility("Intelligence")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Recall Knowledge")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Earn Income")!!
+        )
     )
 
     private val medicine = Skill(
@@ -114,8 +150,14 @@ object SkillRepository {
         "You can patch up wounds and help people recover from diseases and poisons. " +
                 "Even if you’re untrained in Medicine, you can use it to Recall Knowledge (page 238).",
         AbilityRepository.getAbility("Wisdom")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Administer First Aid")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Treat Disease")!!,
+            ActionRepository.getAction("Treat Poison")!!,
+            ActionRepository.getAction("Treat Wounds")!!
+        )
     )
 
     private val nature = Skill(
@@ -124,8 +166,14 @@ object SkillRepository {
                 "and magical beasts. Even if you’re untrained in Nature, you can use it to Recall " +
                 "Knowledge (page 238).",
         AbilityRepository.getAbility("Wisdom")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Recall Knowledge")!!,
+            ActionRepository.getAction("Command an Animal")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Identify Magic")!!,
+            ActionRepository.getAction("Learn a Spell")!!
+        )
     )
 
     private val occultism = Skill(
@@ -134,8 +182,14 @@ object SkillRepository {
                 "obscure mysticism, and supernatural creatures. Even if you’re untrained in " +
                 "Occultism, you can use it to Recall Knowledge (page 238).",
         AbilityRepository.getAbility("Intelligence")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Recall Knowledge")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Decipher Writing")!!,
+            ActionRepository.getAction("Identify Magic")!!,
+            ActionRepository.getAction("Learn a Spell")!!
+        )
     )
 
     private val performance = Skill(
@@ -143,8 +197,12 @@ object SkillRepository {
         "You are skilled at a form of performance, using your talents to impress a crowd " +
                 "or make a living.",
         AbilityRepository.getAbility("Charisma")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Perform")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Earn Income")!!
+        )
     )
 
     private val religion = Skill(
@@ -154,8 +212,14 @@ object SkillRepository {
                 "though your training imparts a religious slant to that knowledge. Even if " +
                 "you’re untrained in Religion, you can use it to Recall Knowledge (page 238).",
         AbilityRepository.getAbility("Wisdom")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Recall Knowledge")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Decipher Writing")!!,
+            ActionRepository.getAction("Identify Magic")!!,
+            ActionRepository.getAction("Learn a Spell")!!
+        )
     )
 
     private val society = Skill(
@@ -166,8 +230,14 @@ object SkillRepository {
                 "societal, and economic workings of settlements. Even if you’re untrained " +
                 "in Society, you can use it for the following general skill actions (page 234).",
         AbilityRepository.getAbility("Intelligence")!!,
-        emptyList(),
-        emptyList()
+        listOf(
+            ActionRepository.getAction("Recall Knowledge")!!,
+            ActionRepository.getAction("Subsist")!!
+        ),
+        listOf(
+            ActionRepository.getAction("Decipher Writing")!!,
+            ActionRepository.getAction("Create Forgery")!!
+        )
     )
 
     private val stealth = Skill(
