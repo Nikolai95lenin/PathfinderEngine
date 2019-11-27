@@ -888,6 +888,251 @@ object ActionRepository {
         )
     )
 
+    private val concealObject = Action(
+        name = "Conceal an Object",
+        description = "You hide a small object on your person (such as a weapon of light Bulk). When you try to " +
+                "sneak a concealed object past someone who might notice it, the GM rolls your Stealth check and " +
+                "compares it to this passive observer’s Perception DC. Once the GM rolls your check for a concealed " +
+                "object, that same result is used no matter how many passive observers you try to sneak it past. " +
+                "If a creature is specifically searching you for an item, it can attempt a Perception check against " +
+                "your Stealth DC (finding the object on success).\n" +
+                "\n" +
+                "You can also conceal an object somewhere other than your person, such as among undergrowth or in a " +
+                "secret compartment within a piece of furniture. In this case, characters Seeking in an area compare " +
+                "their Perception check results to your Stealth DC to determine whether they find the object.",
+        requirements = null,
+        criticalSuccess = null,
+        success = "The object remains undetected.",
+        failure = "The searcher finds the object.",
+        criticalFailure = null,
+        tags = listOf(
+            Tag.MANIPULATE,
+            Tag.SECRET
+        )
+    )
+
+    private val hide = Action(
+        name = "Hide",
+        description = "You huddle behind cover or greater cover or deeper into concealment to become hidden, rather " +
+                "than observed. The GM rolls your Stealth check in secret and compares the result to the Perception " +
+                "DC of each creature you’re observed by but that you have cover or greater cover against or are " +
+                "concealed from. You gain the circumstance bonus from cover or greater cover to your check.",
+        requirements = null,
+        criticalSuccess = null,
+        success = "If the creature could see you, you’re now hidden from it instead of observed. If you were hidden " +
+                "from or undetected by the creature, you retain that condition.\n" +
+                "\n" +
+                "If you successfully become hidden to a creature but then cease to have cover or greater cover " +
+                "against it or be concealed from it, you become observed again. You cease being hidden if you do " +
+                "anything except Hide, Sneak, or Step. If you attempt to Strike a creature, the creature remains " +
+                "flat-footed against that attack, and you then become observed. If you do anything else, you become " +
+                "observed just before you act unless the GM determines otherwise. The GM might allow you to perform " +
+                "a particularly unobtrusive action without being noticed, possibly requiring another Stealth check.\n" +
+                "\n" +
+                "If a creature uses Seek to make you observed by it, you must successfully Hide to become hidden " +
+                "from it again.",
+        failure = null,
+        criticalFailure = null,
+        tags = listOf(
+            Tag.SECRET
+        )
+    )
+
+    private val sneak = Action(
+        name = "Sneak",
+        description = "You can attempt to move to another place while becoming or staying undetected. Stride up to " +
+                "half your Speed. (You can use Sneak while Burrowing, Climbing, Flying, or Swimming instead of " +
+                "Striding if you have the corresponding movement type; you must move at half that Speed.)\n" +
+                "\n" +
+                "If you’re undetected by a creature and it’s impossible for that creature to observe you (for a " +
+                "typical creature, this includes when you’re invisible, the observer is blinded, or you’re in " +
+                "darkness and the creature can’t see in darkness), for any critical failure you roll on a check " +
+                "to Sneak, you get a failure instead. You also continue to be undetected if you lose cover or " +
+                "greater cover against or are no longer concealed from such a creature.\n" +
+                "\n" +
+                "At the end of your movement, the GM rolls your Stealth check in secret and compares the result to " +
+                "the Perception DC of each creature you were hidden from or undetected by at the start of your " +
+                "movement. If you have cover or greater cover from the creature throughout your Stride, you gain " +
+                "the +2 circumstance bonus from cover (or +4 from greater cover) to your Stealth check. Because " +
+                "you’re moving, the bonus increase from Taking Cover doesn’t apply. You don’t get to roll against " +
+                "a creature if, at the end of your movement, you neither are concealed from it nor have cover or " +
+                "greater cover against it. You automatically become observed by such a creature.",
+        requirements = null,
+        criticalSuccess = null,
+        success = "You’re undetected by the creature during your movement and remain undetected by the creature at " +
+                "the end of it.\n" +
+                "\n" +
+                "You become observed as soon as you do anything other than Hide, Sneak, or Step. If you attempt to " +
+                "Strike a creature, the creature remains flat-footed against that attack, and you then become " +
+                "observed. If you do anything else, you become observed just before you act unless the GM determines " +
+                "otherwise. The GM might allow you to perform a particularly unobtrusive action without being " +
+                "noticed, possibly requiring another Stealth check. If you speak or make a deliberate loud noise, " +
+                "you become hidden instead of undetected.\n" +
+                "\n" +
+                "If a creature uses Seek and you become hidden to it as a result, you must Sneak if you want to " +
+                "become undetected by that creature again.",
+        failure = "A telltale sound or other sign gives your position away, though you still remain unseen. You’re " +
+                "hidden from the creature throughout your movement and remain so.",
+        criticalFailure = "You’re spotted! You’re observed by the creature throughout your movement and remain so. " +
+                "If you’re invisible and were hidden from the creature, instead of being observed you’re hidden " +
+                "throughout your movement and remain so.",
+        tags = listOf(
+            Tag.MOVE,
+            Tag.SECRET
+        )
+    )
+
+    private val senseDirection = Action(
+        name = "Sense Direction",
+        description = "Using the stars, the position of the sun, traits of the geography or flora, or the behavior " +
+                "of fauna, you can stay oriented in the wild. Typically, you attempt a Survival check only once per " +
+                "day, but some environments or changes might necessitate rolling more often. The GM determines the " +
+                "DC and how long this activity takes (usually just a minute or so). More unusual locales or those " +
+                "you’re unfamiliar with might require you to have a minimum proficiency rank to Sense Direction. " +
+                "Without a compass, you take a –2 item penalty to checks to Sense Direction.",
+        requirements = null,
+        criticalSuccess = "You get an excellent sense of where you are. If you are in an environment with cardinal " +
+                "directions, you know them exactly.",
+        success = "You gain enough orientation to avoid becoming hopelessly lost. If you are in an environment with " +
+                "cardinal directions, you have a sense of those directions.",
+        failure = null,
+        criticalFailure = null,
+        tags = listOf(
+            Tag.EXPLORATION,
+            Tag.SECRET
+        )
+    )
+
+    private val coverTracks = Action(
+        name = "Cover Tracks",
+        description = "You cover your tracks, moving up to half your travel Speed, using the rules on page 479). You " +
+                "don’t need to attempt a Survival check to cover your tracks, but anyone tracking you must succeed " +
+                "at a Survival check against your Survival DC if it is higher than the normal DC to Track.\n" +
+                "\n" +
+                "In some cases, you might Cover Tracks in an encounter. In this case, Cover Tracks is a single " +
+                "action and doesn’t have the exploration trait.",
+        requirements = null,
+        criticalSuccess = null,
+        success = null,
+        failure = null,
+        criticalFailure = null,
+        tags = listOf(
+            Tag.CONCENTRATE,
+            Tag.EXPLORATION,
+            Tag.MOVE
+        )
+    )
+
+    private val track = Action(
+        name = "Track",
+        description = "You follow tracks, moving at up to half your travel Speed, using the rules on page 479). " +
+                "After a successful check to Track, you can continue following the tracks at half your Speed without " +
+                "attempting additional checks for up to 1 hour. In some cases, you might Track in an encounter. In " +
+                "this case, Track is a single action and doesn’t have the exploration trait, but you might need to " +
+                "roll more often because you’re in a tense situation. The GM determines how often you must attempt " +
+                "this check.\n" +
+                "\n" +
+                "You attempt your Survival check when you start Tracking, once every hour you continue tracking, and " +
+                "any time something significant changes in the trail. The GM determines the DCs for such checks, " +
+                "depending on the freshness of the trail, the weather, and the type of ground.",
+        requirements = null,
+        criticalSuccess = null,
+        success = "You find the trail or continue to follow the one you’re already following.",
+        failure = "You lose the trail but can try again after a 1-hour delay.",
+        criticalFailure = "You lose the trail and can’t try again for 24 hours.",
+        tags = listOf(
+            Tag.CONCENTRATE,
+            Tag.EXPLORATION,
+            Tag.MOVE
+        )
+    )
+
+    private val palmObject = Action(
+        name = "Palm an Object",
+        description = "Palming a small, unattended object without being noticed requires you to roll a single " +
+                "Thievery check against the Perception DCs of all creatures who are currently observing you. You " +
+                "take the object whether or not you successfully conceal that you did so. You can typically only " +
+                "Palm Objects of negligible Bulk, though the GM might determine otherwise depending on the situation.",
+        requirements = null,
+        criticalSuccess = null,
+        success = "The creature does not notice you Palming the Object.",
+        failure = "The creature notices you Palming the Object, and the GM determines the creature’s response.",
+        criticalFailure = null,
+        tags = listOf(
+            Tag.MANIPULATE
+        )
+    )
+
+    private val steal = Action(
+        name = "Steal",
+        description = "You try to take a small object from another creature without being noticed. Typically, you " +
+                "can Steal only an object of negligible Bulk, and you automatically fail if the creature who has the " +
+                "object is in combat or on guard.\n" +
+                "\n" +
+                "Attempt a Thievery check to determine if you successfully Steal the object. The DC to Steal is " +
+                "usually the Perception DC of the creature wearing the object. This assumes the object is worn but " +
+                "not closely guarded (like a loosely carried pouch filled with coins, or an object within such a " +
+                "pouch). If the object is in a pocket or similarly protected, you take a –5 penalty to your Thievery " +
+                "check. The GM might increase the DC of your check if the nature of the object makes it harder to " +
+                "steal (such as a very small item in a large pack, or a sheet of parchment mixed in with other " +
+                "documents).\n" +
+                "\n" +
+                "You might also need to compare your Thievery check result against the Perception DCs of observers " +
+                "other than the person wearing the object. The GM may increase the Perception DCs of these observers " +
+                "if they’re distracted.",
+        requirements = null,
+        criticalSuccess = null,
+        success = "You steal the item without the bearer noticing, or an observer doesn’t see you take or attempt to " +
+                "take the item.",
+        failure = "The item’s bearer notices your attempt before you can take the object, or an observer sees you " +
+                "take or attempt to take the item. The GM determines the response of any creature that notices your " +
+                "theft.",
+        criticalFailure = null,
+        tags = listOf(
+            Tag.MANIPULATE
+        )
+    )
+
+    private val disableDevice = Action(
+        name = "Disable a Device",
+        description = "This action allows you to disarm a trap or another complex device. Often, a device requires " +
+                "numerous successes before becoming disabled, depending on its construction and complexity. Thieves’ " +
+                "tools are helpful and sometimes even required to Disable a Device, as determined by the GM, and " +
+                "sometimes a device requires a higher proficiency rank in Thievery to disable it.\n" +
+                "\n" +
+                "Your Thievery check result determines how much progress you make.",
+        requirements = "Some devices require you to use thieves’ tools (page 291) when disabling them.",
+        criticalSuccess = "You disable the device, or you achieve two successes toward disabling a complex device. " +
+                "You leave no trace of your tampering, and you can rearm the device later, if that type of device " +
+                "can be rearmed.",
+        success = "You disable the device, or you achieve one success toward disabling a complex device.",
+        failure = null,
+        criticalFailure = "You trigger the device.",
+        tags = listOf(
+            Tag.MANIPULATE
+        )
+    )
+
+    private val pickLock = Action(
+        name = "Pick a Lock",
+        description = "Opening a lock without a key is very similar to Disabling a Device, but the DC of the check " +
+                "is determined by the complexity and construction of the lock you are attempting to pick (locks and " +
+                "their DCs are found on page 290). Locks of higher qualities might require multiple successes to " +
+                "unlock, since otherwise even an unskilled burglar could easily crack the lock by attempting the " +
+                "check until they rolled a natural 20. If you lack the proper tools, the GM might let you used " +
+                "improvised picks, which are treated as shoddy tools, depending on the specifics of the lock.",
+        requirements = "You have thieves’ tools (page 291).",
+        criticalSuccess = "You unlock the lock, or you achieve two successes toward opening a complex lock. You " +
+                "leave no trace of your tampering.",
+        success = "You open the lock, or you achieve one success toward opening a complex lock.",
+        failure = null,
+        criticalFailure = "You break your tools. Fixing them requires using Crafting to Repair them or else swapping " +
+                "in replacement picks (costing 3 sp, or 3 gp for infiltrator thieves’ tools).",
+        tags = listOf(
+            Tag.MANIPULATE
+        )
+    )
+
     fun getActions(): List<Action> = listOf(
         administerFirstAid,
         balance,
@@ -895,17 +1140,21 @@ object ActionRepository {
         climb,
         coerce,
         commandAnimal,
+        concealObject,
+        coverTracks,
         craft,
         createDiversion,
         createForgery,
         decipherWriting,
         demoralize,
+        disableDevice,
         disarm,
         earnIncome,
         feint,
         forceOpen,
         gatherInformation,
         grapple,
+        hide,
         highJump,
         identifyAlchemy,
         identifyMagic,
@@ -915,14 +1164,20 @@ object ActionRepository {
         longJump,
         makeImpression,
         maneuverInFlight,
+        palmObject,
         perform,
+        pickLock,
         recallKnowledge,
         repair,
         request,
+        senseDirection,
         shove,
+        sneak,
+        steal,
         squeeze,
         subsist,
         swim,
+        track,
         treatDisease,
         treatPoison,
         treatWounds,
